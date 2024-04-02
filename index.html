@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> University System</title>
+</head>
+<body>
+    <script>
+
+         // Klasa per student
+         function Student(name, surname, DateOfBirth, ID, level) {
+
+this.name = name;
+this.surname = surname;
+this.DateOfBirth = DateOfBirth;
+this.ID = ID;
+this.level = level;
+}
+
+// Metoda me i qit detajet per students
+Student.prototype.displayDetails = function() {
+console.log("Emri: " + this.name);
+console.log("Mbiemri: " + this.surname);
+console.log("Ditelindja: " + this.DateOfBirth);
+console.log("ID: " + this.ID);
+console.log("Niveli: " + this.level);
+}
+
+// Klasa per uni
+function University() {
+this.Students = [];
+}
+
+// Metoda me u shtu studentet ne university
+University.prototype.addStudent = function (Student) {
+this.Students.push(Student);
+}
+
+// metoda me largu studentet
+University.prototype.removeStudent = function (Student) {
+    this.Students.pop(Student);
+}
+
+// Metoda me i qit krejt studentet ne universitet edhe me i shfaq.
+University.prototype.displayStudents = function (){
+console.log("Studentet qe jane aktiv ne universitetin e Prishtines");
+for(var i = 0; i < this.Students.length; i++){
+    console.log("Student" + (i + 1) + ":");
+    this.Students[i].displayDetails();
+}
+}
+
+University.prototype.removeStudent = function (Student) {
+    var index = this.Students.indexOf(Student);
+    if (index !== -1) {
+        this.Students.splice(index, 1);
+    }
+}
+
+
+// Krijimi i objektit te university
+
+var universiteti = new University();
+
+// Krijimi i objekteve
+var Student1 = new Student("Aulona", "Haliti", "18/6/2005", 230903100037, "Bacelor");
+var Student2 = new Student("Elsa", "Mustafa", "01/08/2005", 230903100038, "Bacelor");
+var Student3 = new Student("Arisa", "Maliqi", "07/01/2005", 230903100039, "Bacelor");
+var Student4 = new Student("Ermelina", "Krasniqi", "19/12/2004", 230903100036, "Bacelor");
+var Student5 = new Student("Tiona", "Recica", "02/05/2005", 230903100020, "Bacelor");
+
+// I kena vendos te gjithe studentet
+universiteti.addStudent(Student1);
+universiteti.addStudent(Student2);
+universiteti.addStudent(Student3);
+universiteti.addStudent(Student4);
+universiteti.addStudent(Student5);
+
+// Kena largu dy student
+universiteti.removeStudent(Student5);
+universiteti.removeStudent(Student2);
+
+// Me dal krejt te dhenat
+universiteti.displayStudents();
+
+    </script>
+</body>
+</html>
